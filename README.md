@@ -20,14 +20,17 @@ selectors are db.collection.find() compatible expressions (encoded as JSON) or t
 
 ### sample selectors
 
+select "active" documents:
 ```javascript
 { "status" : "active" }
 ```
 
+select documents named "foo*"
 ```javascript
 { "name" : { "$regex" : "^foo" } }
 ```
 
+select this specific document by it's _id (string)
 ```javascript
 5890935df162533fea1b49ee
 ```
