@@ -127,5 +127,5 @@ module.exports = {
 - debug command line option
 - dryrun command line ioption (how can this be achieved?)
 - transport arguments to execution scripts?
-- more mode than exec? (e.g. create)
+- more modes than exec? (e.g. create)
 
