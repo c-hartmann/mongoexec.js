@@ -20,6 +20,12 @@ if no selector is given on command line, read these from stdin. in fact that giv
 $ mongoexec products.answers ./get_id '{"price":{"$gt":42}}' | mongoexec products.answers ./reduce_price_by_ten_percent
 ```
 
+obviously this serves as an example only, as it can be achieved shorter as:
+
+```
+$ mongoexec products.answers ./reduce_price_by_ten_percent '{"price":{"$gt":42}}'
+```
+
 ## selectors
 
 selectors are db.collection.find() compatible expressions (encoded as JSON) or the hexadecimal string representation of a documents _id
