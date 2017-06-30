@@ -10,7 +10,7 @@ $ mongoexec <namespace> <execution> [ <selector> ... ]
 
 whereas:
 
-* namespace is <database>.<collection>
+* namespace is `<database>.<collection>`
 * execution is the name of an "execution" script (see below for more)
 * selector is a db.collection.find() expression or the string represantation of a documents _id
 
@@ -104,3 +104,13 @@ module.exports = {
   }
 };
 ```
+
+** TODO
+
+- read executions (and? selectors) from file
+- swap order of command line arguments? (to: <selector> <execution>)
+- take decision on final stdin handling (see the three optiopns below)
+- pass db instead or additionaly to collection into the execution?
+- pass document as an object with self-saving, updating etc. methods?
+- debug command line option
+- dryrun command line ioption (how can this be achieved?)
