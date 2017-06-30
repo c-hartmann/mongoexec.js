@@ -18,7 +18,7 @@ whereas:
 
 selectors are db.collection.find() compatible expressions (encoded as JSON) or the hexadecimal string representation of a documents _id
 
-### samples:
+### sample selectors
 
 ```javascript
 { "status" : "active" }
@@ -54,7 +54,7 @@ execution scripts are "required" and therefore command line syntax follows the r
 $ mongoexec inventory.cars ./get_license_plate.js '{ "firstLicenseYear" : { "$lt" : "2016" }'
 ```
 
-### samples
+### sample execution scripts
 
 sample: printing the documents _id property:
 
