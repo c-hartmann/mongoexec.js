@@ -20,23 +20,23 @@ selectors are db.collection.find() compatible expressions (encoded as JSON) or t
 
 ### samples:
 
-``` js
+```javascript
 { "status" : "active" }
-``` js
+```
 
-``` js
+```javascript
 { "name" : { "$regex" : "^foo" } }
-``` js
+```
 
-``` js
+```javascript
 5890935df162533fea1b49ee
-``` js
+```
 
 ## execution scripts
 
 execution script are node.js modules following this basic pattern:
 
-``` js
+```javascript
 module.exports = {
   exec: function (document, collection, callback) {
     var error = null;
@@ -44,7 +44,7 @@ module.exports = {
     callback(error, response);
   }
 }
-``` js
+```
 
 execution scripts are "required" and therefore command line syntax follows the require() syntax, as in:
 
@@ -56,7 +56,7 @@ $ mongoexec inventory.cars ./get_license_plate.js '{ "firstLicenseYear" : { "$lt
 
 sample: printing the documents _id property:
 
-``` js
+```javascript
 module.exports = {
   exec: function (document, collection, callback) {
     console.log(document._id);
@@ -65,11 +65,11 @@ module.exports = {
     callback(error, response);
   }
 }
-``` js
+```
 
 sample: delete a document
 
-``` js
+```javascript
 module.exports = {
   exec: function (document, collection, callback) {
     // remove by document _id, check for error and response
@@ -81,11 +81,11 @@ module.exports = {
     });
   }
 };
-``` js
+```
 
 sample: update a (status) property
 
-``` js
+```javascript
 module.exports = {
   exec: function (document, collection, callback) {
     // update by document _id and response
@@ -96,4 +96,4 @@ module.exports = {
     callback(null, { archived: { _id: document._id } });
   }
 };
-``` js
+```
