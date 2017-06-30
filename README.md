@@ -112,7 +112,7 @@ module.exports = {
         {'_id': document._id},
         { $set: { status: 'archived' } }
     );
-    callback(null, { archived: { _id: document._id } });
+    callback(null, { archived: document._id });
   }
 };
 ```
