@@ -1,6 +1,6 @@
 {
   "name": "mongoexec",
-  "version": "0.9.0",
+  "version": "0.1.0",
   "description": "one small tool to execute arbitrary commands on selectable documents in a mongodb database collection",
   "main": "mongoexec.js",
   "dependencies": {
@@ -19,7 +19,7 @@
     "mongodb",
     "javascript",
     "node",
-    "databse",
+    "database",
     "maintenance"
   ],
   "author": "christian hartmann",
