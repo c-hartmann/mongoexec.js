@@ -14,6 +14,8 @@ whereas:
 * execution is the name of an "execution" script (see below for more)
 * selector is a db.collection.find() expression or the string represantation of a documents _id
 
+if no selector is gicen on command line, read these from stdin
+
 ## selectors
 
 selectors are db.collection.find() compatible expressions (encoded as JSON) or the hexadecimal string representation of a documents _id
