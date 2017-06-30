@@ -1,6 +1,6 @@
 # mongoexec
 
-one small command line tool to execute arbitrary commands on selectable documents in a mongodb database collection
+a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
 ## usage
 
@@ -14,7 +14,11 @@ whereas:
 * execution is the name of an "execution" script (see below for more)
 * selector is a db.collection.find() expression or the string represantation of a documents _id
 
-if no selector is given on command line, read these from stdin
+if no selector is given on command line, read these from stdin. in fact that gives the ability to combine mongoexecs as in:
+
+```
+$ mongoexec products.answers ./get_id '{"price":{"$gt":42}}' | mongoexec products.answers ./reduce_price_by_ten_percent
+```
 
 ## selectors
 
@@ -114,3 +118,6 @@ module.exports = {
 - pass document as an object with self-saving, updating etc. methods?
 - debug command line option
 - dryrun command line ioption (how can this be achieved?)
+- transport arguments to execution scripts?
+- more mode than exec? (e.g. create)
+
