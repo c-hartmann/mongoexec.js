@@ -117,7 +117,7 @@ module.exports = {
 };
 ```
 
-** TODO
+## TODO
 
 - read executions (and? selectors) from file
 - swap order of command line arguments? (to: <selector> <execution>)
