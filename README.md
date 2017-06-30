@@ -41,6 +41,8 @@ module.exports = {
   exec: function (document, collection, callback) {
     var error = null;
     var response = null;
+    // do something here with the document
+    // use collection to execute commands
     callback(error, response);
   }
 }
