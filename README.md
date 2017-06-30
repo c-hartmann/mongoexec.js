@@ -120,7 +120,7 @@ module.exports = {
 ## TODO
 
 - read executions (and? selectors) from file
-- swap order of command line arguments? (to: <selector> <execution>)
+- swap order of command line arguments? (to: selector execution)
 - take decision on final stdin handling (see the three optiopns below)
 - pass db instead or additionaly to collection into the execution?
 - pass document as an object with self-saving, updating etc. methods?
