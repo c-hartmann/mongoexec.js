@@ -2,6 +2,8 @@
 
 a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
+version: 0.1.0
+
 ## usage
 
 ```
@@ -17,7 +19,7 @@ whereas:
 if no selector is given on command line, read these from stdin. in fact that gives the ability to combine mongoexecs as in:
 
 ```
-$ mongoexec products.answers ./get_id '{"price":{"$gt":42}}' | mongoexec products.answers ./reduce_price_by_ten_percent
+$ mongoexec products.answers ./get_id.js '{"price":{"$gt":42}}' | mongoexec products.answers ./reduce_price_by_ten_percent.js
 ```
 
 obviously this serves as an example only, as it can be achieved shorter as:
