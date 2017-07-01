@@ -1,4 +1,4 @@
-# mongoexec
+# mongoexec.js
 
 a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
