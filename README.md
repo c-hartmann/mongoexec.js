@@ -2,7 +2,7 @@
 
 a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
-version: 0.1.4
+version: 0.1.5
 
 ## usage
 

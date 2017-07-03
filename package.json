@@ -1,18 +1,18 @@
 {
   "name": "mongoexec.js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "one small tool to execute arbitrary commands on selectable documents in a mongodb database collection",
   "readme": "README.md",
   "bin": {
-    "mongoexec": "./bin/mongoexec.js"
+    "mongoexec": "bin/mongoexec.js"
   },
   "directories": {
-    "bin": "./bin",
-    "example": "./sample executions"
+    "bin": "bin",
+    "example": "sample-executions"
   },
   "files": [
-    "./bin",
-    "./sample executions"
+    "bin",
+    "sample-executions"
   ],
   "preferGlobal": true,
   "engines": {
