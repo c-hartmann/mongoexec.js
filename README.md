@@ -119,8 +119,6 @@ module.exports = {
 
 ## install
 
-unfortunately currently the author of this is not smart enough to understand, how that goes! (npm publishing a binary)
-
 ```
 $ npm install --global mongoexec.js
 $ mongoexec
