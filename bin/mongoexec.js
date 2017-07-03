@@ -9,7 +9,7 @@
  * in a mongodb database collection
  *
  * usage:
- * mongoexec <namespace> <execution> [ <selector> ... ]');
+ * mongoexec <namespace> <execution> [ <selector> ... ]
  *
  * command line args:
  *

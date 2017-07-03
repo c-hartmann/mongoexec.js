@@ -1,8 +1,23 @@
 {
-  "name": "mongoexec",
-  "version": "0.1.0",
+  "name": "mongoexec.js",
+  "version": "0.1.4",
   "description": "one small tool to execute arbitrary commands on selectable documents in a mongodb database collection",
-  "main": "mongoexec.js",
+  "readme": "README.md",
+  "bin": {
+    "mongoexec": "./bin/mongoexec.js"
+  },
+  "directories": {
+    "bin": "./bin",
+    "example": "./sample executions"
+  },
+  "files": [
+    "./bin",
+    "./sample executions"
+  ],
+  "preferGlobal": true,
+  "engines": {
+    "node": ">=0.8"
+  },
   "dependencies": {
     "async": "^2.5.0",
     "mongodb": "^2.2.29"
@@ -13,16 +28,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/c-hartmann/mongoexec.git"
+    "url": "git+https://github.com/c-hartmann/mongoexec.js.git"
   },
   "keywords": [
     "mongodb",
-    "javascript",
-    "node",
     "database",
     "maintenance"
   ],
-  "author": "christian hartmann",
+  "author": "Christian Hartmann",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/c-hartmann/mongoexec/issues"
