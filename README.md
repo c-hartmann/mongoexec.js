@@ -2,7 +2,7 @@
 
 a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
-version: 0.1.5
+version: 0.1.6
 
 ## usage
 
@@ -80,7 +80,7 @@ module.exports = {
   exec: function (document, collection, callback) {
     console.log(document._id);
     var error = null;
-    var response = document._id;
+    var response = { _id: document._id };
     callback(error, response);
   }
 }
@@ -126,7 +126,6 @@ $ mongoexec
 
 ## TODO
 
-- create a nicely linked npm version that nicely publishes there
 - eventualy this should also be a npm module package (main: ./lib/...)
 - read executions (and? selectors) from file
 - swap order of command line arguments? (to: selector execution)
