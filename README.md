@@ -2,7 +2,7 @@
 
 a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
-version: 0.1.7
+version: 0.1.9
 
 ## usage
 
@@ -25,7 +25,7 @@ $ mongoexec products.answers ./get_id.js '{"price":{"$gt":42}}' | mongoexec prod
 obviously this serves as an example only, as it can be achieved shorter (on the same database) as:
 
 ```
-$ mongoexec products.answers ./reduce_price_by_ten_percent '{"price":{"$gt":42}}'
+$ mongoexec products.answers ./reduce_price_by_ten_percent.js '{"price":{"$gt":42}}'
 ```
 
 ## selectors
@@ -110,9 +110,19 @@ module.exports = {
     // update by document _id and response
     collection.updateOne(
         {'_id': document._id},
-        { $set: { status: 'archived' } }
+        { $set: { 'status': 'archived' } }, 
+        { upsert: false }, 
+        function (err, r) {
+            if (err) {
+                console.error(document._id, err);
+                callback(err, null);
+            } else {
+                console.info(document._id, 'archived');
+                callback(null, { updated: document._id, to: 'archived' });
+            }
+    
+        }
     );
-    callback(null, { archived: document._id });
   }
 };
 ```
@@ -126,7 +136,7 @@ $ mongoexec
 
 ## TODO (required fixes)
 
-- finding executions in cwd if installed global
+- none
 
 ## TODO (functionals)
 

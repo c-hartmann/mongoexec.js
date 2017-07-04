@@ -1,6 +1,6 @@
 {
   "name": "mongoexec.js",
-  "version": "0.1.7",
+  "version": "0.1.9",
   "description": "one small tool to execute arbitrary commands on selectable documents in a mongodb database collection",
   "readme": "README.md",
   "bin": {
