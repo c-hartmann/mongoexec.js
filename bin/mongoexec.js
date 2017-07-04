@@ -3,7 +3,7 @@
 /*
  * mongoexec.js (mongodb command line interface tool)
  *
- * v: 0.1.0 (handling stdin first time)
+ * v: 0.1.7
  *
  * one small tool to execute arbitrary commands on selectable documents
  * in a mongodb database collection
@@ -49,9 +49,9 @@ const mongodb  =    require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const ObjectID =    mongodb.ObjectID;
 
-// my global node_modules directory is (experimental) (might also be ./mongoexec directory)
-var extensionRegExp = new RegExp('.'+path.extname(process.argv[1])+'$'); // matches e.g. '.js' at the end of me
-const my_node_modules_path = '/usr/local/lib/'+path.basename(process.argv[1]).replace(/\.js$/,'')+'/node_modules';
+// // my global node_modules directory is (experimental) (might also be ./mongoexec directory)
+// var extensionRegExp = new RegExp('.'+path.extname(process.argv[1])+'$'); // matches e.g. '.js' at the end of me
+// const my_node_modules_path = '/usr/local/lib/'+path.basename(process.argv[1]).replace(/\.js$/,'')+'/node_modules';
 // console.error('my_node_modules_path:', my_node_modules_path);
 
 // note that first and second command line args are 'node' and the name of this file,
@@ -87,22 +87,34 @@ else if (databaseName.match(/.+:\d+\/.+/)) // just the host, port part and name 
   var databaseUrl = 'mongodb://'+databaseName;
 else // assuming just the name part
   var databaseUrl = 'mongodb://localhost:27017/'+databaseName;
-console.error('database url:', databaseUrl);
+console.error('database uri:', databaseUrl);
 console.error('collection name:', collectionName);
 args.shift();
 
 // execution shall be the second argument after node and the mongoexec.js script
-const executionName = args[0];
+var executionName = args[0];
 args.shift();
 
 var execution;
 
-// search on my private node modules directory first
+// rewrite executionName to an absolute path if it is "local"
+const cwd = process.cwd()
+// console.error('current working directory:', cwd);
 try {
-  execution = require(my_node_modules_path+path.sep+executionName);
-} catch(err) {
-//   console.error('not a global execution:', executionName);
+  fs.accessSync(executionName, (fs.constants || fs).R_OK);
+  executionName = cwd + path.sep + executionName;
+} catch (err) {
+//   console.error('can not access execution name:', err);
 }
+// console.error('execution name:', executionName);
+// console.error('require resolve:', require.resolve(executionName));
+
+// // search on my private node modules directory first
+// try {
+//   execution = require(my_node_modules_path+path.sep+executionName);
+// } catch(err) {
+//   console.error('not a global execution:', executionName);
+// }
 
 try {
 //   console.error('search here for:', executionName);
@@ -110,7 +122,7 @@ try {
 } catch(err) {
   console.error('no such execution:', executionName);
   console.error(err);
-//   console.error('node path:', process.env.NODE_PATH);
+  console.error('node path:', process.env.NODE_PATH);
   process.exit(9);
 }
 
@@ -140,6 +152,7 @@ MongoClient.connect(databaseUrl, function(err, db) {
               // query = { _id: sel }; // should work according to mongob docs, but does not
               // from other docs: https://stackoverflow.com/questions/10929443/nodejs-mongodb-getting-data-from-collection-with-findone
               query = { _id: ObjectID.createFromHexString(sel) };
+              console.error('query:', query);
               collection.findOne(query, function(err, doc) {
                 if (err) {
                   console.error('query error:', err);
@@ -164,20 +177,26 @@ MongoClient.connect(databaseUrl, function(err, db) {
                 if (err)
                   console.error('query error:', err);
                 // excute operation an any of result arrays elements
-                if (docs)
+                if (docs.length) {
 //                   docs.every(function(doc, idx, arr) {
                   async.forEach(docs, function(doc, cb) {
                       execution.exec(doc, collection, function(error, response) {
-      //                   console.log('found by:', query, 'response:', response);
-//                         console.error('found by:', query, 'response:', response);
+                        if (error)
+                          console.error('exec error:', eror);
+                        else
+                          console.error('exec response:', response);
                       });
                       cb();
                     },
                     function (err) {
-//                      console.error('done with docs');
-                     callback();
+                      // done with docs
+                      callback();
                     }
                   );
+              } else {
+                  console.error('query not matched:', query);
+                  callback();
+                }
               });
             } else {
               console.error('expr not understood:', sel);

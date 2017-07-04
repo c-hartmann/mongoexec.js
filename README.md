@@ -2,7 +2,7 @@
 
 a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
-version: 0.1.6
+version: 0.1.7
 
 ## usage
 
@@ -65,7 +65,7 @@ module.exports = {
 }
 ```
 
-execution scripts are "required" and therefore command line syntax follows the require() syntax, as in:
+execution scripts are loaded with absolute path or relative to current working directory and .js file extension is required
 
 ```
 $ mongoexec inventory.cars ./get_license_plate.js '{ "firstLicenseYear" : { "$lt" : "2016" }'
@@ -124,7 +124,11 @@ $ npm install --global mongoexec.js
 $ mongoexec
 ```
 
-## TODO
+## TODO (required fixes)
+
+- finding executions in cwd if installed global
+
+## TODO (functionals)
 
 - eventualy this should also be a npm module package (main: ./lib/...)
 - read executions (and? selectors) from file
