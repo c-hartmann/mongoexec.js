@@ -145,7 +145,7 @@ MongoClient.connect(databaseUrl, function(err, db) {
 //       selectors.every(function(sel, arr, idx) {
       async.forEach(selectors, function(sel, callback) {
           if (sel) {
-            if (sel.match(/^[\d\D]{24}$/)) { // matches the pattern of a 12 byte ObjectId
+            if (sel.match(/^[0-9a-f]{24}$/i)) { // matches string of 24 hex characters
     //           console.error('is object id:', sel);
               // there can be only one
               var query;
