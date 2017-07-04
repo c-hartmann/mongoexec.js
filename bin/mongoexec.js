@@ -74,11 +74,11 @@ const databaseArgs = args[0].split('.'); // WARNING: DOES *NOT* WORK IF DATABASE
 var databaseName = databaseArgs[0];
 const collectionName = databaseArgs[1];
 if (!databaseName) {
-  console.error('could not get database name from:', databaseArg);
+  console.error('could not get database name from:', args[0]);
   process.exit(1);
 }
 if (!collectionName) {
-  console.error('could not get collection name from:', databaseArg);
+  console.error('could not get collection name from:', args[0]);
   process.exit(2);
 }
 if (databaseName.match(/^mongodb:/)) // a full mongodb url
