@@ -3,7 +3,11 @@
 /*
  * mongoexec.js (mongodb command line interface tool)
  *
- * v: 0.1.7
+ * v: 0.1.10
+ *
+ * changelog:
+ * 0.1.10: 2017-08-08 callback on err for standard selector ({...}) handling
+ * 0.1.10: 2017-08-08 get back even if object id is not valid
  *
  * one small tool to execute arbitrary commands on selectable documents
  * in a mongodb database collection
@@ -136,7 +140,6 @@ if (typeof execution.exec != 'function') {
 // operate on successfull databse connection
 MongoClient.connect(databaseUrl, function(err, db) {
 
-
     function handleSelectors(selectors)  {
       //
       // start looping the selectors
@@ -160,8 +163,15 @@ MongoClient.connect(databaseUrl, function(err, db) {
                 }
                 if (doc) {
                   execution.exec(doc, 0, null, collection, function(error, response) {
+                    if (error)
+                      console.error('exec error:', eror);
+                    else
+                      console.error('exec response:', response);
                     callback();
                   });
+                }
+                else { // get back even if object id is not valid
+                  callback();
                 }
               });
             } else if (sel.match(/^\{.*\}$/)) {
@@ -174,8 +184,10 @@ MongoClient.connect(databaseUrl, function(err, db) {
               }
               console.error('query:', query);
               collection.find(query).toArray(function(err, docs) {
-                if (err)
+                if (err) {
                   console.error('query error:', err);
+                  callback();
+                }
                 // excute operation an any of result arrays elements
                 if (docs.length) {
 //                   docs.every(function(doc, idx, arr) {
@@ -214,7 +226,6 @@ MongoClient.connect(databaseUrl, function(err, db) {
         }
       );
     }
-
 
     console.error('connected to:', db.databaseName);
 

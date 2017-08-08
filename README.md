@@ -2,7 +2,7 @@
 
 a small command line tool to execute arbitrary commands on selected documents in one mongodb database collection
 
-version: 0.1.9
+version: 0.1.10
 
 ## usage
 
@@ -14,7 +14,7 @@ whereas:
 
 * namespace is `<database>.<collection>`
 * execution is the name of an "execution" script (see below for more)
-* selector is a db.collection.find() expression or the string represantation of a documents _id
+* selector is a db.collection.find() expression or the string representation of a documents _id
 
 if no selector is given on command line, read these from stdin. in fact that gives the ability to combine mongoexecs (even on discrete databases) as in:
 
@@ -110,8 +110,8 @@ module.exports = {
     // update by document _id and response
     collection.updateOne(
         {'_id': document._id},
-        { $set: { 'status': 'archived' } }, 
-        { upsert: false }, 
+        { $set: { 'status': 'archived' } },
+        { upsert: false },
         function (err, r) {
             if (err) {
                 console.error(document._id, err);
@@ -120,7 +120,7 @@ module.exports = {
                 console.info(document._id, 'archived');
                 callback(null, { updated: document._id, to: 'archived' });
             }
-    
+
         }
     );
   }
@@ -146,8 +146,8 @@ $ mongoexec
 - take decision on final stdin handling (see the options in the code)
 - pass db instead or additionaly to collection into the execution?
 - pass document as an object with self-saving, updating etc. methods?
-- debug command line option
-- dryrun command line ioption (how can this be achieved?)
+- command line options: --verbose, --help, --version
+- command line option: --dryrun (how can this be achieved? any handy driver option?)
 - transport arguments to execution scripts?
 - more modes than exec? (e.g. create)
 
