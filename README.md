@@ -12,9 +12,9 @@ $ mongoexec <namespace> <execution> [ <selector> ... ]
 
 whereas:
 
-* namespace is `<database>.<collection>`
-* execution is the name of an "execution" script (see below for more)
-* selector is a db.collection.find() expression or the string representation of a documents _id
+* \<namespace\> is `<database>.<collection>`
+* \<execution\> is the name of an "execution" script (see below for more)
+* \<selector\> is a db.collection.find() expression or the string representation of a documents _id
 
 if no selector is given on command line, read these from stdin. in fact that gives the ability to combine mongoexecs (even on discrete databases) as in:
 
@@ -150,4 +150,3 @@ $ mongoexec
 - command line option: --dryrun (how can this be achieved? any handy driver option?)
 - transport arguments to execution scripts?
 - more modes than exec? (e.g. create)
-
