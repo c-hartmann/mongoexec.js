@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "async": "^2.5.0",
-    "mongodb": "^2.2.29"
+    "mongodb": "^3.6.1"
   },
   "devDependencies": {},
   "scripts": {
